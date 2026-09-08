@@ -1,5 +1,36 @@
 {
     "projects": {
+        "1775638D-2E29-0D9F-0D91-5E2E38AD4B21": {
+            "config-debug": {
+                "additionalDependencies": [
+                    "SDL3.lib;%(AdditionalDependencies)"
+                ],
+                "additionalIncludeDirectories": [
+                    "$(SolutionDir)../lib/SDL3/include"
+                ],
+                "additionalLibraryDirectories": [
+                    "$(SolutionDir)../lib/SDL3/lib/x64"
+                ],
+                "preprocessorDefinitions": []
+            },
+            "config-release": {
+                "additionalDependencies": [],
+                "additionalIncludeDirectories": [],
+                "additionalLibraryDirectories": [],
+                "preprocessorDefinitions": []
+            },
+            "dependencies": [
+                "7C6D6D06-730D-3BB1-6B0F-34C835102D10"
+            ],
+            "dependents": [
+                "1D803688-346B-71BE-1EFE-0903515A1211"
+            ],
+            "name": "IMGuiWrapper",
+            "property-lib": true,
+            "property-pch": false,
+            "property-vcpkg": false,
+            "property-window": false
+        },
         "1D803688-346B-71BE-1EFE-0903515A1211": {
             "config-debug": {
                 "additionalDependencies": [
@@ -19,7 +50,10 @@
                 "additionalLibraryDirectories": [],
                 "preprocessorDefinitions": []
             },
-            "dependencies": ["7C6D6D06-730D-3BB1-6B0F-34C835102D10"],
+            "dependencies": [
+                "7C6D6D06-730D-3BB1-6B0F-34C835102D10",
+                "1775638D-2E29-0D9F-0D91-5E2E38AD4B21"
+            ],
             "dependents": [],
             "name": "Test",
             "property-lib": false,
@@ -30,7 +64,7 @@
         "7C6D6D06-730D-3BB1-6B0F-34C835102D10": {
             "config-debug": {
                 "additionalDependencies": [
-                    "SDL3.lib;%(AdditionalDependencies)"                    
+                    "SDL3.lib;%(AdditionalDependencies)"
                 ],
                 "additionalIncludeDirectories": [
                     "$(SolutionDir)../lib/SDL3/include"
@@ -47,7 +81,10 @@
                 "preprocessorDefinitions": []
             },
             "dependencies": [],
-            "dependents": ["1D803688-346B-71BE-1EFE-0903515A1211"],
+            "dependents": [
+                "1D803688-346B-71BE-1EFE-0903515A1211",
+                "1775638D-2E29-0D9F-0D91-5E2E38AD4B21"
+            ],
             "name": "IMGUI",
             "property-lib": true,
             "property-pch": false,
@@ -57,6 +94,7 @@
     },
     "projects_name_to_guid": {
         "IMGUI": "7C6D6D06-730D-3BB1-6B0F-34C835102D10",
+        "IMGuiWrapper": "1775638D-2E29-0D9F-0D91-5E2E38AD4B21",
         "Test": "1D803688-346B-71BE-1EFE-0903515A1211"
     },
     "solution_guid": "7C2F4F4B-4532-41BE-6D86-11584E100652",

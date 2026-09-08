@@ -1,11 +1,9 @@
 #include <iostream>
 #include "main.h"
-#include "imgui.h"
-#include "imgui_impl_sdl3.h"
-#include "imgui_impl_sdlrenderer3.h"
+
 #include "SDL3/SDL.h"
 
-#include "Initialize.h"
+#include "IMGuiManager.h"
 
 
 struct Player
@@ -25,12 +23,15 @@ int main()
 	SDL_Window* window = nullptr;
 	SDL_Renderer* renderer = nullptr;
 
-	if (!InitSDL3("Test",800,800,&window,&renderer))
+	ImGuiManager::InitWindow("Test", 800, 800, &window, &renderer, SDL_WINDOW_RESIZABLE);
+	ImGuiIO& io = ImGuiManager::GetIO();
+
+	/*if (!InitSDL3("Test",800,800,&window,&renderer))
 	{
 		return 0;
 	}
 
-	ImGuiIO& io = InitImGui(window, renderer);
+	ImGuiIO& io = InitImGui(window, renderer);*/
 
 
 	//LOOP 
@@ -54,13 +55,13 @@ int main()
 			if (event.type == SDL_EVENT_QUIT)
 				run = false;
 
-			ImGui_ImplSDL3_ProcessEvent(&event); //ImGUI read SDL event
+			ImGuiManager::ProcessEvent(&event);
 		}
 
 
 		//Frame
-		ImGui::SDL3_NewFrame();
-
+		//ImGui::SDL3_NewFrame();
+		ImGuiManager::NewFrame();
 
 		// DO shitty thing
 		ImGui::Begin("Hello ImGui");
@@ -136,11 +137,11 @@ int main()
 
 
 		//Render ImGui
-		ImGui::SDL3_ImGuiRender(renderer);
+		//ImGui::SDL3_ImGuiRender(renderer);
+		ImGuiManager::Render(renderer);
 	}
 
-	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	ImGuiManager::Quit(window, renderer);
 
 	return 0;
 }
