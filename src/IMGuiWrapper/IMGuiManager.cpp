@@ -20,9 +20,20 @@ bool ImGuiManager::InitWindow(const char* windowName, int windW, int windH, SDL_
 	return true;
 }
 
-bool ImGuiManager::InitWindow(const char* windowName, int windW, int windH, SDL_Window** window, ImGui_ImplSDLGPU3_InitInfo* gpuInfo, SDL_WindowFlags)
+bool ImGuiManager::InitWindow(const char* windowName, int windW, int windH, SDL_Window** window, ImGui_ImplSDLGPU3_InitInfo* gpuInfo, SDL_WindowFlags flags)
 {
-	return false;
+	if (!Platform::Init(windowName, windW, windH, window, nullptr, flags))
+	{
+		Platform::Quit(*window, nullptr);
+		return false;
+	}
+
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+
+	//Platform::ImplementRenderer(*window, gpuInfo);
+
+	return true;
 }
 
 ImGuiIO& ImGuiManager::GetIO()

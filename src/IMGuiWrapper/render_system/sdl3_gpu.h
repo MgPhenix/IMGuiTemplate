@@ -4,8 +4,11 @@
 
 namespace RenderSystem
 {
+	void Init();
 
+	void NewFrame();
+
+	void Render();
 }
-
 
 #endif // SDL3
