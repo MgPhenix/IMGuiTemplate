@@ -46,40 +46,40 @@ void main()
 	ImGuiIO& io = ImGuiManager::GetIO();
 
 
-  //Loop
-  bool run = true;
-  while (run)
-  {
-  	//Event
-  	SDL_Event event;
-  	while (SDL_PollEvent(&event))
+  	//Loop
+  	bool run = true;
+  	while (run)
   	{
-  		if (event.type == SDL_EVENT_QUIT)
-  			run = false;
+		//Event
+		SDL_Event event;
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_EVENT_QUIT)
+				run = false;
   
-  		ImGuiManager::ProcessEvent(&event); //Process Event
+			ImGuiManager::ProcessEvent(&event); //Process Event
+		}
+
+		ImGuiManager::NewFrame(); //Create a new Frame
+
+		//ImGUI Code 
+		ImGui::Begin("Hello ImGui");
+		ImGui::Text("Hello World!");
+		ImGui::End();
+
+		//Then render 
+		//Render SDL
+		SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
+		SDL_RenderClear(renderer);
+	
+	
+		//Render ImGui
+		ImGuiManager::Render(renderer);
   	}
 
-    ImGuiManager::NewFrame(); //Create a new Frame
-
-    //ImGUI Code 
-    ImGui::Begin("Hello ImGui");
-    ImGui::Text("Hello World!");
-    ImGui::End();
-
-    //Then render 
-    //Render SDL
-    SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
-    SDL_RenderClear(renderer);
-    
-    
-    //Render ImGui
-    ImGuiManager::Render(renderer);
-  }
-
-ImGuiManager::Quit(window, renderer); // quit ImGui, Window & Renderer are auto destroy
-
-return 0;
+	ImGuiManager::Quit(window, renderer); // quit ImGui, Window & Renderer are auto destroy
+	
+	return 0;
 }
 
 ```
