@@ -5,6 +5,8 @@
 
 #include "IMGuiManager.h"
 
+#include "imgui_impl_sdlgpu3.h"
+#include "imgui_impl_sdl3.h"
 
 struct Player
 {
@@ -35,6 +37,16 @@ int main()
 
 
 	//LOOP 
+	
+	//
+	//ImGui_ImplSDLGPU3_Init();
+	//ImGui_ImplSDL3_InitForSDLGPU();
+
+	//ImGui_ImplSDLGPU3_NewFrame();
+	//ImGui_ImplSDL3_NewFrame();
+
+	
+
 
 	bool enabled = false;
 	int machin = 100;
