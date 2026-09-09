@@ -2,13 +2,16 @@
 
 #ifdef SDL3
 
+struct ImGui_ImplSDLGPU3_InitInfo;
+struct SDL_Window;
+
 namespace RenderSystem
 {
-	void Init();
+	void Init(SDL_Window* window, ImGui_ImplSDLGPU3_InitInfo* gpuInfo);
 
-	void NewFrame();
+	void NewGPUFrame();
 
-	void Render();
+	void Render(SDL_GPUDevice* device);
 }
 
 #endif // SDL3

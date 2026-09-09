@@ -24,30 +24,44 @@ bool Platform::Init(const char* windowName, int windW, int windH, SDL_Window** w
 {
 #ifdef SDL3
 
-
 	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO))
 	{
 		std::cout << "SDL_Init_Error :  " << SDL_GetError() << std::endl;
 		return false;
 	}
 
-	SDL_CreateWindowAndRenderer(windowName, 800, 800, flags, window, renderer);
-
-	if (!window)
+	if (renderer != nullptr)
 	{
-		std::cout << "SDL_CreateWindow_Error : " << SDL_GetError() << std::endl;
-		SDL_Quit();
-		return false;
-	}
+		SDL_CreateWindowAndRenderer(windowName, 800, 800, flags, window, renderer);
 
-	if (!renderer)
+		if (!window)
+		{
+			std::cout << "SDL_CreateWindow_Error : " << SDL_GetError() << std::endl;
+			SDL_Quit();
+			return false;
+		}
+
+		if (!renderer)
+		{
+			std::cout << "Renderer_error : " << SDL_GetError() << std::endl;
+			SDL_DestroyWindow(*window);
+			SDL_Quit();
+			return false;
+		}
+	}
+	else
 	{
-		std::cout << "Renderer_error : " << SDL_GetError() << std::endl;
-		SDL_DestroyWindow(*window);
-		SDL_Quit();
-		return false;
-	}
+		*window = SDL_CreateWindow(windowName, windH, windW, flags);
 
+		if (!window)
+		{
+			std::cout << "SDL_CreateWindow_Error : " << SDL_GetError() << std::endl;
+			SDL_Quit();
+			return false;
+		}
+
+		gpu_enabled = true;
+	}
 
 	return true;
 
@@ -90,14 +104,21 @@ bool Platform::Init(const char* windowName, int windW, int windH, SDL_Window** w
 void Platform::Quit(SDL_Window* window, SDL_Renderer* renderer)
 {
 	SDL_DestroyWindow(window);
-	SDL_DestroyRenderer(renderer);
+	if(renderer != nullptr)	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
 }
 
 
 void Platform::NewFrame()
 {
+#ifdef SDL3
+	if (gpu_enabled) //I don't like that shit
+		RenderSystem::NewGPUFrame();
+	else
+		RenderSystem::NewFrame();
+#else
 	RenderSystem::NewFrame();
+#endif // SDL3
 }
 
 
@@ -107,10 +128,24 @@ void Platform::ImplementRenderer(SDL_Window* window, SDL_Renderer* renderer)
 }
 
 
+
+#ifdef SDL3
+void Platform::ImplementRenderer(SDL_Window* window, ImGui_ImplSDLGPU3_InitInfo* gpuInfo)
+{
+	RenderSystem::Init(window, gpuInfo);
+}
+#endif // SDL3
+
+
 void Platform::Render(SDL_Renderer* renderer)
 {
 	RenderSystem::Render(renderer);
 	SDL_RenderPresent(renderer);
+}
+
+void Platform::Render(SDL_GPUDevice* device)
+{
+	RenderSystem::Render(device);
 }
 
 

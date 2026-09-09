@@ -12,6 +12,7 @@
 #ifdef SDL2
 #include "imgui_impl_sdl2.h"
 #include "imgui_impl_sdlrenderer2.h"
+#include "sdl3_gpu.h"
 #endif 
 
 
@@ -28,7 +29,6 @@ void RenderSystem::Init(SDL_Window* window, SDL_Renderer* renderer)
 	ImGui_ImplSDLRenderer2_Init(renderer);
 #endif // SDL2
 }
-
 
 void RenderSystem::NewFrame()
 {
