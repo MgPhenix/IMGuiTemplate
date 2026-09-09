@@ -25,7 +25,7 @@
             "dependents": [
                 "1D803688-346B-71BE-1EFE-0903515A1211"
             ],
-            "name": "IMGuiWrapper",
+            "name": "ImGuiWrapper",
             "property-lib": true,
             "property-pch": false,
             "property-vcpkg": false,
@@ -85,7 +85,7 @@
                 "1D803688-346B-71BE-1EFE-0903515A1211",
                 "1775638D-2E29-0D9F-0D91-5E2E38AD4B21"
             ],
-            "name": "IMGUI",
+            "name": "ImGUI",
             "property-lib": true,
             "property-pch": false,
             "property-vcpkg": false,
@@ -98,7 +98,7 @@
         "Test": "1D803688-346B-71BE-1EFE-0903515A1211"
     },
     "solution_guid": "7C2F4F4B-4532-41BE-6D86-11584E100652",
-    "solution_name": "IMGuiTest",
+    "solution_name": "ImGuiTemplate",
     "startup_project": "",
     "version": "2.0"
 }

@@ -1,7 +1,7 @@
-#include "IMGuiManager.h"
+#include "ImGuiManager.h"
 
 #ifdef PLATFORM_SDL
-#include "platform/SDL_Platform.h"
+#include "platform/sdl_platform.h"
 #endif // PLATFORM_SDL
 
 bool ImGuiManager::InitWindow(const char* windowName, int windW, int windH, SDL_Window** window, SDL_Renderer** renderer, SDL_WindowFlags flags)
