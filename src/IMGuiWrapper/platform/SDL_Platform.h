@@ -1,6 +1,7 @@
 #include "Config.h"
 
-#ifdef PLATFORM_SDL2
+#ifdef PLATFORM_SDL
+
 
 namespace Platform
 {
@@ -18,10 +19,4 @@ namespace Platform
 }
 
 
-
-
-
-
-
-
-#endif // PLATFORM_SDL2
+#endif // PLATFORM_SDL
