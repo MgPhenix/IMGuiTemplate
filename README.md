@@ -33,7 +33,7 @@ After that you can create your own project or use the "Test" project if you want
 ## Usage
 
 ```cpp
-#include "SDL3/SDL.h" // The programm itself detect if you have SDL2 or 3 so the usage is the same for SDF2
+#include "SDL3/SDL.h" // The programm itself detect if you have SDL2 or 3 so the usage is the same for SDL2
 #include "IMGuiManager.h"
 
 void main()
